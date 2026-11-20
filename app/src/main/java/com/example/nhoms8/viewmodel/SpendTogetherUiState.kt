@@ -1,0 +1,55 @@
+package com.example.nhoms8.viewmodel
+
+import com.example.nhoms8.DebtItem
+import com.example.nhoms8.GroupMember
+import com.example.nhoms8.HistoryTransactionItem
+import com.example.nhoms8.RecentTransaction
+import com.example.nhoms8.SplitMemberItem
+import com.example.nhoms8.TransactionDateGroup
+import com.example.nhoms8.model.BudgetState
+import com.example.nhoms8.model.CategoryReportItem
+import com.example.nhoms8.model.ChatMessage
+import com.example.nhoms8.model.DraftExpense
+import com.example.nhoms8.model.MemberReportItem
+import com.example.nhoms8.model.TransactionFilter
+import com.example.nhoms8.model.UserProfile
+
+/**
+ * Trạng thái UI tổng hợp (SpendTogetherUiState)
+ * Cung cấp luồng dữ liệu phản ứng tức thì (StateFlow) cho các màn hình Compose
+ */
+data class SpendTogetherUiState(
+    val userProfile: UserProfile = UserProfile(),
+    val members: List<GroupMember> = emptyList(),
+    val selectedMember: GroupMember? = null,
+    val recentTransactions: List<RecentTransaction> = emptyList(),
+    val historyGroups: List<TransactionDateGroup> = emptyList(),
+    val debts: List<DebtItem> = emptyList(),
+    val budget: BudgetState = BudgetState(),
+    val draftExpense: DraftExpense = DraftExpense(),
+    val filter: TransactionFilter = TransactionFilter(),
+    val autoReminderEnabled: Boolean = true,
+    val splitMembers: List<SplitMemberItem> = emptyList(),
+    val totalContributedAmount: String = "0 đ",
+    val unpaidDebtsCount: Int = 0,
+    val totalUnpaidDebtFormatted: String = "0 đ",
+    val categoryReportItems: List<CategoryReportItem> = emptyList(),
+    val memberReportItems: List<MemberReportItem> = emptyList(),
+    val highestSpenderNote: String = "",
+    val totalSpentFormatted: String = "0 đ",
+    val authLoading: Boolean = false,
+    val authErrorMessage: String? = null,
+    val authSuccessMessage: String? = null,
+    val firebaseUserEmail: String? = null,
+    val chatMessages: List<ChatMessage> = listOf(
+        ChatMessage(
+            text = "Chào bạn! Mình là FinSprout 🌱 - Trợ lý AI của SpendTogether dành riêng cho Quỹ Chi Tiêu Nhóm 08. Mình có thể giúp bạn ghi nhanh chi tiêu bằng lời nói, kiểm tra quỹ nhóm hoặc gợi ý tin nhắn đòi nợ khéo léo. Bạn cần hỗ trợ gì hôm nay?",
+            isFromUser = false,
+            timestampFormatted = "Vừa xong"
+        )
+    ),
+    val isChatbotTyping: Boolean = false,
+    val activeGroupId: String? = null,
+    val activeGroupName: String = "Quỹ Chi Tiêu Nhóm 08",
+    val unreadNotificationsCount: Int = 0
+)
